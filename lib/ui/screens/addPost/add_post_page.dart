@@ -136,9 +136,7 @@ class _AddPostPageState extends State<AddPostPage> {
                                     hintText: 'Agrega un comentario',
                                     hintStyle: GoogleFonts.roboto(fontSize: 18)
                                   ),
-                                  validator: (value) {
-                                    RequiredValidator(errorText: 'El campo es obligatorio');
-                                  },
+                                  validator: RequiredValidator(errorText: 'El campo es obligatorio'),
                                 ),
                               ),
                             ],

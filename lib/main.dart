@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Social Media - Frave',
+        title: 'Social Media - Fraved',
         home: CheckingLoginPage(),
       ),
     );
