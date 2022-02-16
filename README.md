@@ -26,6 +26,14 @@ Frave Developer
 - Push notifications (Next)
 - http
 
+```sh
+    flutter pub get
+```
+
+```
+    flutter pub upgrade
+```
+
 ## Backend - NodeJs
 
 - https://github.com/Frave07/Social-Media-Backend
