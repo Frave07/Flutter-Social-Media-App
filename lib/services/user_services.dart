@@ -33,8 +33,7 @@ class UserServices {
         'password': password
       }
     );
-
-    return DefaultResponse.fromJson( jsonDecode( resp.body ) );
+    return DefaultResponse.fromJson(jsonDecode(resp.body));
   }
 
 
