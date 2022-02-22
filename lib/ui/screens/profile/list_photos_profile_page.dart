@@ -9,7 +9,7 @@ import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_post_by_user.dart';
 import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/comments/comments_post_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -99,7 +99,7 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(URLS.baseUrl+ listImages[i])
+                                        image: NetworkImage(Environment.baseUrl+ listImages[i])
                                       )
                                     ),
                                 ), 
@@ -116,7 +116,7 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CircleAvatar(
-                                      backgroundImage: NetworkImage(URLS.baseUrl + snapshot.data![i].avatar),
+                                      backgroundImage: NetworkImage(Environment.baseUrl + snapshot.data![i].avatar),
                                     ),
                                     const SizedBox(width: 10.0),
                                     Column(

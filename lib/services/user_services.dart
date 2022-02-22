@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/debouncer.dart';
 import 'package:social_media/helpers/secure_storage.dart';
 import 'package:social_media/models/response/default_response.dart';
@@ -9,7 +10,6 @@ import 'package:social_media/models/response/response_followings.dart';
 import 'package:social_media/models/response/response_search.dart';
 import 'package:social_media/models/response/response_user.dart';
 import 'package:social_media/models/response/response_user_search.dart';
-import 'package:social_media/services/url_service.dart';
 
 
 class UserServices {
@@ -24,7 +24,7 @@ class UserServices {
 
   Future<DefaultResponse> createdUser(String name, String user, String email, String password) async {
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/user'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/user'),
       headers: { 'Accept': 'application/json' },
       body: {
         'fullname' : name,
@@ -42,7 +42,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/user/get-User-By-Id'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/user/get-User-By-Id'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -52,7 +52,7 @@ class UserServices {
 
   Future<DefaultResponse> verifyEmail(String email, String code) async {
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/user/verify-email/'+ code +'/' + email),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/user/verify-email/'+ code +'/' + email),
       headers: { 'Accept': 'application/json' }
     );
 
@@ -64,7 +64,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    var request = http.MultipartRequest('PUT', Uri.parse('${URLS.urlApi}/user/update-cover'))
+    var request = http.MultipartRequest('PUT', Uri.parse('${Environment.urlApi}/user/update-cover'))
       ..headers['Accept'] = 'application/json'
       ..headers['xxx-token'] = token!
       ..files.add( await http.MultipartFile.fromPath('cover', cover));
@@ -80,7 +80,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    var request = http.MultipartRequest('PUT', Uri.parse('${URLS.urlApi}/user/update-image-profile'))
+    var request = http.MultipartRequest('PUT', Uri.parse('${Environment.urlApi}/user/update-image-profile'))
       ..headers['Accept'] = 'application/json'
       ..headers['xxx-token'] = token!
       ..files.add( await http.MultipartFile.fromPath('profile', profile));
@@ -97,7 +97,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.put(Uri.parse('${URLS.urlApi}/user/update-data-profile'),
+    final resp = await http.put(Uri.parse('${Environment.urlApi}/user/update-data-profile'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
       body: {
         'user': user,
@@ -115,7 +115,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.put(Uri.parse('${URLS.urlApi}/user/change-password'),
+    final resp = await http.put(Uri.parse('${Environment.urlApi}/user/change-password'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
       body: {
         'currentPassword' : currentPass,
@@ -131,7 +131,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.put(Uri.parse('${URLS.urlApi}/user/change-account-privacy'),
+    final resp = await http.put(Uri.parse('${Environment.urlApi}/user/change-account-privacy'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -147,7 +147,7 @@ class UserServices {
 
       final token = await secureStorage.readToken();
 
-      final resp = await http.get(Uri.parse('${URLS.urlApi}/user/get-search-user/'+ username),
+      final resp = await http.get(Uri.parse('${Environment.urlApi}/user/get-search-user/'+ username),
         headers: { 'Accept': 'application/json', 'xxx-token': token! }
       );
 
@@ -166,7 +166,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/user/get-another-user-by-id/'+ idUser),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/user/get-another-user-by-id/'+ idUser),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -178,7 +178,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/user/add-new-friend'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/user/add-new-friend'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
       body: { 'uidFriend': uidFriend }
     );
@@ -191,7 +191,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/user/accept-follower-request'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/user/accept-follower-request'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
       body: { 
         'uidFriend': uidFriend,
@@ -207,7 +207,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.delete(Uri.parse('${URLS.urlApi}/user/delete-following/' + uidUser),
+    final resp = await http.delete(Uri.parse('${Environment.urlApi}/user/delete-following/' + uidUser),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
     );
 
@@ -219,7 +219,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/user/get-all-following'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/user/get-all-following'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
     );
 
@@ -231,7 +231,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/user/get-all-followers'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/user/get-all-followers'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
     );
 
@@ -243,7 +243,7 @@ class UserServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.delete(Uri.parse('${URLS.urlApi}/user/delete-followers/' + uidUser),
+    final resp = await http.delete(Uri.parse('${Environment.urlApi}/user/delete-followers/' + uidUser),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
     );
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/secure_storage.dart';
 import 'package:social_media/models/response/default_response.dart';
 import 'package:social_media/models/response/response_comments.dart';
@@ -8,7 +9,6 @@ import 'package:social_media/models/response/response_post.dart';
 import 'package:social_media/models/response/response_post_by_user.dart';
 import 'package:social_media/models/response/response_post_profile.dart';
 import 'package:social_media/models/response/response_post_saved.dart';
-import 'package:social_media/services/url_service.dart';
 
 
 class PostServices {
@@ -19,7 +19,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    var request = http.MultipartRequest('POST', Uri.parse('${URLS.urlApi}/post/create-new-post'))
+    var request = http.MultipartRequest('POST', Uri.parse('${Environment.urlApi}/post/create-new-post'))
       ..headers['Accept'] = 'application/json'
       ..headers['xxx-token'] = token!
       ..fields['comment'] = comment
@@ -39,7 +39,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-all-posts'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-all-posts'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -51,7 +51,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-post-by-idPerson'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-post-by-idPerson'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -63,7 +63,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/post/save-post-by-user'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/post/save-post-by-user'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! },
       body: { 'post_uid' :  uidPost}
     );
@@ -76,7 +76,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-list-saved-posts'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-list-saved-posts'),
       headers: { 'Accept' : 'application/json', 'xxx-token': token! }
     );
     
@@ -88,7 +88,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-all-posts-for-search'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-all-posts-for-search'),
       headers: {'Accept' : 'application/json', 'xxx-token' : token!}
     );
 
@@ -100,7 +100,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/post/like-or-unlike-post'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/post/like-or-unlike-post'),
       headers: {'Accept' : 'application/json', 'xxx-token' : token!},
       body: {
         'uidPost': uidPost,
@@ -116,7 +116,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-comments-by-idpost/'+ uidPost),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-comments-by-idpost/'+ uidPost),
       headers: {'Accept' : 'application/json', 'xxx-token' : token!},
     );
 
@@ -128,7 +128,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.post(Uri.parse('${URLS.urlApi}/post/add-new-comment'),
+    final resp = await http.post(Uri.parse('${Environment.urlApi}/post/add-new-comment'),
       headers: {'Accept' : 'application/json', 'xxx-token' : token!},
       body: {
         'uidPost': uidPost,
@@ -144,7 +144,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.put(Uri.parse('${URLS.urlApi}/post/like-or-unlike-comment'),
+    final resp = await http.put(Uri.parse('${Environment.urlApi}/post/like-or-unlike-comment'),
       headers: {'Accept' : 'application/json', 'xxx-token' : token!},
       body: {
         'uidComment': uidComment
@@ -159,7 +159,7 @@ class PostServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/post/get-all-post-by-user-id'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/post/get-all-post-by-user-id'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 

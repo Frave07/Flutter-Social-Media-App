@@ -4,7 +4,7 @@ import 'package:social_media/bloc/user/user_bloc.dart';
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_user_search.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/services/user_services.dart';
 import 'package:social_media/ui/screens/messages/chat_message_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
@@ -143,7 +143,7 @@ class _ListFotosAnotherProfile extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(URLS.baseUrl + listImages.first)
+                  image: NetworkImage(Environment.baseUrl + listImages.first)
                 )
               ),
             ),
@@ -350,7 +350,7 @@ class _CoverAndProfile extends StatelessWidget {
             child: user.cover != ''
               ? Image(
                   fit: BoxFit.cover,
-                  image: NetworkImage(URLS.baseUrl + user.cover )
+                  image: NetworkImage(Environment.baseUrl + user.cover )
                 )
               : Container(
                   height: 170,
@@ -385,7 +385,7 @@ class _CoverAndProfile extends StatelessWidget {
                   shape: BoxShape.circle
                 ),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage( URLS.baseUrl + user.image )
+                  backgroundImage: NetworkImage( Environment.baseUrl + user.image )
                 ),
               ),
             ),

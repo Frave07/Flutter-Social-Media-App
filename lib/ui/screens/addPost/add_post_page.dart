@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +12,7 @@ import 'package:social_media/bloc/post/post_bloc.dart';
 import 'package:social_media/bloc/user/user_bloc.dart';
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -118,7 +117,7 @@ class _AddPostPageState extends State<AddPostPage> {
                                     width: size.width * .125,
                                     child: CircleAvatar(
                                       radius: 30,
-                                      backgroundImage: NetworkImage(URLS.baseUrl + userBloc.user!.image),
+                                      backgroundImage: NetworkImage(Environment.baseUrl + userBloc.user!.image),
                                     ),
                                   )
                                 ],

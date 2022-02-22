@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media/bloc/user/user_bloc.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_followers.dart';
-import 'package:social_media/services/url_service.dart';
 import 'package:social_media/services/user_services.dart';
 import 'package:social_media/ui/screens/profile/profile_another_user_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -104,7 +104,7 @@ class _ListFollowers extends StatelessWidget {
                     CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.amber,
-                      backgroundImage: NetworkImage(URLS.baseUrl + follow[i].avatar),
+                      backgroundImage: NetworkImage(Environment.baseUrl + follow[i].avatar),
                     ),
                     const SizedBox(width: 10.0),
                     Column(

@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social_media/models/response/response_post_saved.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
 
@@ -63,7 +63,7 @@ class SavedPostsPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(URLS.baseUrl+ listImages[i])
+                                  image: NetworkImage(Environment.baseUrl+ listImages[i])
                                 )
                               ),
                           ), 
@@ -78,7 +78,7 @@ class SavedPostsPage extends StatelessWidget {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage: NetworkImage(URLS.baseUrl + savedPost[i].avatar),
+                                backgroundImage: NetworkImage(Environment.baseUrl + savedPost[i].avatar),
                               ),
                             const SizedBox(width: 5.0),
                             TextFrave(text: savedPost[i].username, fontWeight: FontWeight.w500, color: Colors.white ),

@@ -5,7 +5,7 @@ import 'package:social_media/bloc/chat/chat_bloc.dart';
 import 'package:social_media/bloc/user/user_bloc.dart';
 import 'package:social_media/models/response/response_list_messages.dart';
 import 'package:social_media/services/chat_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/messages/widgets/chat_message.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -132,7 +132,7 @@ class _ChatMessagesPageState extends State<ChatMessagesPage> with TickerProvider
         ),
         actions: [
           CircleAvatar(
-            backgroundImage: NetworkImage(URLS.baseUrl + widget.avatarTarget ),
+            backgroundImage: NetworkImage(Environment.baseUrl + widget.avatarTarget ),
           ),
           const SizedBox(width: 10.0)
         ],

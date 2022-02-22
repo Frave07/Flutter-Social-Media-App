@@ -5,7 +5,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/models/response/response_list_chat.dart';
 import 'package:social_media/services/chat_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/messages/chat_message_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -108,7 +108,7 @@ class _ListMessagesPageState extends State<ListMessagesPage> {
                             children: [
                               CircleAvatar(
                                 radius: 27,
-                                backgroundImage: NetworkImage(URLS.baseUrl + snapshot.data![i].avatar),
+                                backgroundImage: NetworkImage(Environment.baseUrl + snapshot.data![i].avatar),
                               ),
                               const SizedBox(width: 10.0),
                               Column(

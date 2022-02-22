@@ -63,7 +63,7 @@ class _ItemProfile extends StatelessWidget {
           => state.user?.image != null 
             ? CircleAvatar(
                 radius: 15,
-                backgroundImage: NetworkImage(URLS.baseUrl+ state.user!.image )
+                backgroundImage: NetworkImage(Environment.baseUrl+ state.user!.image )
               )
             : const CircleAvatar(
                 radius: 15,

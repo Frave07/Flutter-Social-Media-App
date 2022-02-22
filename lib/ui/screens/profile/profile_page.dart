@@ -8,7 +8,7 @@ import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_post_profile.dart';
 import 'package:social_media/models/response/response_post_saved.dart';
 import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/components/animted_toggle.dart';
 import 'package:social_media/ui/screens/profile/followers_page.dart';
 import 'package:social_media/ui/screens/profile/following_page.dart';
@@ -143,7 +143,7 @@ class _ListFotosProfile extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(URLS.baseUrl + listImages.first)
+                    image: NetworkImage(Environment.baseUrl + listImages.first)
                   )
                 ),
               ),
@@ -194,7 +194,7 @@ class _ListSaveProfile extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(URLS.baseUrl + listImages.first)
+                    image: NetworkImage(Environment.baseUrl + listImages.first)
                   )
                 )
               ),
@@ -328,7 +328,7 @@ class _CoverAndProfile extends StatelessWidget {
                 => ( state.user?.cover != null && state.user?.cover != '')
                 ? Image(
                     fit: BoxFit.cover,
-                    image: NetworkImage(URLS.baseUrl + state.user!.cover )
+                    image: NetworkImage(Environment.baseUrl + state.user!.cover )
                   )
                 : Container(
                   height: 170,
@@ -384,7 +384,7 @@ class _CoverAndProfile extends StatelessWidget {
                           }
                         ),
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage( URLS.baseUrl + state.user!.image )
+                          backgroundImage: NetworkImage( Environment.baseUrl + state.user!.image )
                         ),
                     )
                     : const CircularProgressIndicator()

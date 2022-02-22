@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:social_media/bloc/post/post_bloc.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_search.dart';
 import 'package:social_media/models/response/response_post.dart';
 import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/url_service.dart';
 import 'package:social_media/services/user_services.dart';
 import 'package:social_media/ui/screens/profile/profile_another_user_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -161,7 +161,7 @@ class _ListUsers extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(URLS.baseUrl + listUser[i].avatar),
+                    backgroundImage: NetworkImage(Environment.baseUrl + listUser[i].avatar),
                   ),
                   const SizedBox(width: 10.0),
                   Column(
@@ -215,7 +215,7 @@ class _GridPostSearch extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(URLS.baseUrl + listImages.first)
+                    image: NetworkImage(Environment.baseUrl + listImages.first)
                   )
                 )
               ),

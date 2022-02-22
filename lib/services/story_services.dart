@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/secure_storage.dart';
 import 'package:social_media/models/response/default_response.dart';
 import 'package:social_media/models/response/response_list_stories.dart';
 import 'package:social_media/models/response/response_stories.dart';
-import 'package:social_media/services/url_service.dart';
 
 class StoryServices {
 
@@ -13,7 +13,7 @@ class StoryServices {
 
     final token = await secureStorage.readToken();
 
-    var request = http.MultipartRequest('POST', Uri.parse('${URLS.urlApi}/story/create-new-story'))
+    var request = http.MultipartRequest('POST', Uri.parse('${Environment.urlApi}/story/create-new-story'))
       ..headers['Accept'] = 'application/json'
       ..headers['xxx-token'] = token!;
       request.files.add( await http.MultipartFile.fromPath('imageStory', image));
@@ -30,7 +30,7 @@ class StoryServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/story/get-all-stories-home'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/story/get-all-stories-home'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
@@ -42,7 +42,7 @@ class StoryServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/story/get-story-by-user/'+ uidStory),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/story/get-story-by-user/'+ uidStory),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
     return ResponseListStories.fromJson(jsonDecode(resp.body)).listStories;

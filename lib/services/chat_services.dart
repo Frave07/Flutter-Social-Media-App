@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/secure_storage.dart';
 import 'package:social_media/models/response/response_list_chat.dart';
 import 'package:social_media/models/response/response_list_messages.dart';
-import 'package:social_media/services/url_service.dart';
 
 class ChatServices {
 
@@ -13,7 +13,7 @@ class ChatServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/chat/get-list-chat-by-user'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/chat/get-list-chat-by-user'),
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );  
 
@@ -25,7 +25,7 @@ class ChatServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/chat/get-all-message-by-user/'+ uid),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/chat/get-all-message-by-user/'+ uid),
       headers: { 'Accept': 'application/json', 'xxx-token' : token! }
     );
 

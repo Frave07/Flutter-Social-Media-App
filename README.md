@@ -19,24 +19,28 @@ Frave Developer
 <a href="https://www.buymeacoffee.com/frave"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="200"></a>
 
 
+## Requirements
+
+- Change IP
+    - lib/services/url_service.dart
+
 ## Flutter
 
 - Flutter bloc
 - Socket io client
-- Push notifications (Next)
 - http
 
 ```sh
-    flutter pub get
-```
-
-```
     flutter pub upgrade
 ```
 
-## Backend - NodeJs
+```
+    flutter pub get
+```
 
-- https://github.com/Frave07/Social-Media-Backend
+## Backend
+
+- [Node.Js](https://github.com/Frave07/Social-Media-Backend)
 
 ---
 

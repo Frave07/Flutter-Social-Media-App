@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/secure_storage.dart';
 import 'package:social_media/models/response/response_notifications.dart';
-import 'package:social_media/services/url_service.dart';
 
 
 class NotificationsServices {
@@ -13,7 +13,7 @@ class NotificationsServices {
 
     final token = await secureStorage.readToken();
 
-    final resp = await http.get(Uri.parse('${URLS.urlApi}/notification/get-notification-by-user'),
+    final resp = await http.get(Uri.parse('${Environment.urlApi}/notification/get-notification-by-user'),
       headers: { 'Accept' : 'application/json', 'xxx-token' : token! }
     );
 

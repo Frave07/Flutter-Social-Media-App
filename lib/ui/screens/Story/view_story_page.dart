@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/models/response/response_list_stories.dart';
 import 'package:social_media/models/response/response_stories.dart';
 import 'package:social_media/services/story_services.dart';
-import 'package:social_media/services/url_service.dart';
 import 'package:social_media/ui/screens/Story/widgets/animated_line.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -125,7 +125,7 @@ class _ViewStoryPageState extends State<ViewStoryPage> with TickerProviderStateM
                       itemBuilder: (context, index) {
                         return CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: URLS.baseUrl + snapshot.data![index].media
+                          imageUrl: Environment.baseUrl + snapshot.data![index].media
                         );
                       },
                     ),
@@ -160,7 +160,7 @@ class _ViewStoryPageState extends State<ViewStoryPage> with TickerProviderStateM
                           children: [
                             CircleAvatar(
                               radius: 20,
-                              backgroundImage: NetworkImage(URLS.baseUrl + widget.storyHome.avatar),
+                              backgroundImage: NetworkImage(Environment.baseUrl + widget.storyHome.avatar),
                             ),
                             const SizedBox(width: 10.0),
                             Expanded(

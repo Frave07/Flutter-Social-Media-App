@@ -41,7 +41,7 @@ void modalShowPost(BuildContext context, { required Post post}){
                               Row(
                                 children: [
                                   CircleAvatar(
-                                    backgroundImage: NetworkImage(URLS.baseUrl + post.avatar),
+                                    backgroundImage: NetworkImage(Environment.baseUrl + post.avatar),
                                   ),
                                   const SizedBox(width: 10.0),
                                   TextFrave(text: post.username, fontWeight: FontWeight.w500)
@@ -58,7 +58,7 @@ void modalShowPost(BuildContext context, { required Post post}){
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(URLS.baseUrl + listImages.first)
+                              image: NetworkImage(Environment.baseUrl + listImages.first)
                             )
                           )
                         ),

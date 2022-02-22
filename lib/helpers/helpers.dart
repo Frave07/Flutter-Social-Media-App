@@ -10,10 +10,10 @@ import 'package:social_media/bloc/post/post_bloc.dart';
 import 'package:social_media/bloc/user/user_bloc.dart';
 import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/models/response/response_post.dart';
-import 'package:social_media/services/url_service.dart';
 import 'package:social_media/ui/screens/profile/setting_profile_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
+import 'package:social_media/data/env.dart';
 
 part 'modal_success.dart';
 part 'modal_warning.dart';

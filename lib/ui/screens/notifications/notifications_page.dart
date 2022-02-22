@@ -6,7 +6,7 @@ import 'package:social_media/helpers/animation_route.dart';
 import 'package:social_media/helpers/helpers.dart';
 import 'package:social_media/models/response/response_notifications.dart';
 import 'package:social_media/services/notifications_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -82,7 +82,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                               CircleAvatar(
                                 radius: 22,
                                 backgroundColor: Colors.blue,
-                                backgroundImage: NetworkImage(URLS.baseUrl + snapshot.data![i].avatar),
+                                backgroundImage: NetworkImage(Environment.baseUrl + snapshot.data![i].avatar),
                               ),
                               const SizedBox(width: 5.0),
                               Row(

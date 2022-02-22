@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:social_media/bloc/user/user_bloc.dart';
 import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/screens/addPost/add_post_page.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/screens/notifications/notifications_page.dart';

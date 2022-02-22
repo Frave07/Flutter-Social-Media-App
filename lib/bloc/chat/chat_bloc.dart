@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/helpers/secure_storage.dart';
-import 'package:social_media/services/url_service.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 part 'chat_event.dart';
@@ -24,7 +24,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     final token = await secureStorage.readToken();
 
-    _socket = io.io(URLS.baseUrl + 'socket-chat-message', {
+    _socket = io.io(Environment.baseUrl + 'socket-chat-message', {
       'transports': ['websocket'],
       'autoConnect': true,
       'forceNew': true,

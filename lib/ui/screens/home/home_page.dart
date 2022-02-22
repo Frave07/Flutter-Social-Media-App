@@ -17,7 +17,7 @@ import 'package:social_media/ui/screens/notifications/notifications_page.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:social_media/models/response/response_post.dart';
 import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -157,7 +157,7 @@ class _ListHistories extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: NetworkImage(URLS.baseUrl + state.user!.image.toString() )
+                              image: NetworkImage(Environment.baseUrl + state.user!.image.toString() )
                             )
                           ),
                         ),
@@ -213,7 +213,7 @@ class _ListHistories extends StatelessWidget {
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: NetworkImage(URLS.baseUrl + snapshot.data![i].avatar )
+                                      image: NetworkImage(Environment.baseUrl + snapshot.data![i].avatar )
                                     )
                                   ),
                                 ),
@@ -281,7 +281,7 @@ class _ListViewPosts extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(URLS.baseUrl+ listImages[i])
+                          image: NetworkImage(Environment.baseUrl+ listImages[i])
                         )
                       ),
                   ), 
@@ -300,7 +300,7 @@ class _ListViewPosts extends StatelessWidget {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage: NetworkImage(URLS.baseUrl + posts.avatar),
+                                backgroundImage: NetworkImage(Environment.baseUrl + posts.avatar),
                               ),
                               const SizedBox(width: 10.0),
                               Column(

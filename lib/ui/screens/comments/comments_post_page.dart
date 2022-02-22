@@ -6,7 +6,7 @@ import 'package:social_media/helpers/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:social_media/models/response/response_comments.dart';
 import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/url_service.dart';
+import 'package:social_media/data/env.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
 class CommentsPostPage extends StatefulWidget {
@@ -98,7 +98,7 @@ class _CommentsPostPageState extends State<CommentsPostPage> {
                               CircleAvatar(
                                 radius: 25,
                                 backgroundColor: Colors.blue,
-                                backgroundImage: NetworkImage(URLS.baseUrl+ snapshot.data![i].avatar),
+                                backgroundImage: NetworkImage(Environment.baseUrl+ snapshot.data![i].avatar),
                               ),
                               const SizedBox(width: 10.0),
                               
