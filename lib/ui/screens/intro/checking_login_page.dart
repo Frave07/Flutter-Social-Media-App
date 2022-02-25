@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/auth/auth_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/screens/login/started_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
@@ -73,8 +72,8 @@ class _CheckingLoginPageState extends State<CheckingLoginPage> with TickerProvid
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               colors: [
-                ColorsFrave.secundaryColorFrave,
-                ColorsFrave.primaryColorFrave,
+                ColorsFrave.secundary,
+                ColorsFrave.primary,
                 Colors.white
               ]
             )
@@ -93,7 +92,7 @@ class _CheckingLoginPageState extends State<CheckingLoginPage> with TickerProvid
                     )
                   ),
                   const SizedBox(height: 10.0),
-                  const TextFrave(text: 'Verificando...', color: Colors.white)
+                  const TextCustom(text: 'Verificando...', color: Colors.white)
                 ],
               ),
             ),

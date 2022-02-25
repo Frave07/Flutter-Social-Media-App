@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/validate_form.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/login/verify_email_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -37,13 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void dispose() {
-    fullNameController.clear();
     fullNameController.dispose();
-    userController.clear();
     userController.dispose();
-    emailController.clear();
     emailController.dispose();
-    passwordController.clear();
     passwordController.dispose();
     super.dispose();
   }
@@ -95,16 +89,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TextFrave(
+                    const TextCustom(
                        text: 'Hola!', 
                        letterSpacing: 1.5, 
                        fontWeight: FontWeight.w500, 
                        fontSize: 28, 
-                       color: ColorsFrave.secundaryColorFrave
+                       color: ColorsFrave.secundary
                     ),
                           
                     const SizedBox(height: 10.0),
-                    const TextFrave(
+                    const TextCustom(
                        text: 'Create una nueva cuenta.', 
                        fontSize: 17,
                        letterSpacing: 1.0,
@@ -141,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   
                     const SizedBox(height: 60.0),
-                    const TextFrave(
+                    const TextCustom(
                        text: 'Al registrarte, aceptas los terminos de servicio y las politicas de privacidad.', 
                        fontSize: 15,
                        maxLines: 2,

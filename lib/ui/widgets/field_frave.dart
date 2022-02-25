@@ -22,12 +22,12 @@ class TextFieldFrave extends StatelessWidget {
     return TextFormField(
       controller: controller,
       style: GoogleFonts.getFont('Roboto', fontSize: 18),
-      cursorColor: ColorsFrave.secundaryColorFrave,
+      cursorColor: ColorsFrave.secundary,
       obscureText: isPassword,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)), 
-        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: ColorsFrave.primaryColorFrave)), 
+        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: ColorsFrave.primary)), 
         hintText: hintText,
       ),
       validator: validator,

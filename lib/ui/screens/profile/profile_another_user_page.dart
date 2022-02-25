@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_user_search.dart';
-import 'package:social_media/data/env.dart';
-import 'package:social_media/services/user_services.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/models/response/response_user_search.dart';
+import 'package:social_media/domain/services/user_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/messages/chat_message_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -160,8 +159,8 @@ class _ListFotosAnotherProfile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              TextFrave(text: 'Esta cuenta es privada', fontWeight: FontWeight.w500),
-              TextFrave(text: 'Sigue esta cuenta para poder ver sus fotos.', color: Colors.grey, fontSize: 16),
+              TextCustom(text: 'Esta cuenta es privada', fontWeight: FontWeight.w500),
+              TextCustom(text: 'Sigue esta cuenta para poder ver sus fotos.', color: Colors.grey, fontSize: 16),
             ],
           )
         ],
@@ -202,7 +201,7 @@ class _BtnFollowAndMessage extends StatelessWidget {
           height: 43,
           width: size.width * .5,
           decoration: BoxDecoration(
-            color: isFriend == 1 || isPendingFollowers == 1 ? Colors.white : ColorsFrave.primaryColorFrave,
+            color: isFriend == 1 || isPendingFollowers == 1 ? Colors.white : ColorsFrave.primary,
             border: Border.all(color:  isFriend == 1 || isPendingFollowers == 1 ? Colors.grey : Colors.white),
             borderRadius: BorderRadius.circular(50.0)
           ),
@@ -211,7 +210,7 @@ class _BtnFollowAndMessage extends StatelessWidget {
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0) )
               ),
-              child: TextFrave(
+              child: TextCustom(
                 text: isFriend == 1 ? 'Siguiendo' : 'Seguir', 
                 fontSize: 20, 
                 color: isFriend == 1 ? Colors.black : Colors.white
@@ -228,7 +227,7 @@ class _BtnFollowAndMessage extends StatelessWidget {
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0) )
               ),
-              child: const TextFrave(text: 'Pendiente', fontSize: 20, color: Colors.black),
+              child: const TextCustom(text: 'Pendiente', fontSize: 20, color: Colors.black),
               onPressed: (){
                 
               }, 
@@ -245,7 +244,7 @@ class _BtnFollowAndMessage extends StatelessWidget {
             style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0) )
             ),
-            child: const TextFrave(text: 'Mensaje', fontSize: 20),
+            child: const TextCustom(text: 'Mensaje', fontSize: 20),
             onPressed: () 
               => Navigator.push(
                   context, 
@@ -278,20 +277,20 @@ class _PostAndFollowingAndFollowers extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    TextFrave(text: analytics.posters.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
-                    const TextFrave(text: 'Post',  fontSize: 17, color: Colors.grey),
+                    TextCustom(text: analytics.posters.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
+                    const TextCustom(text: 'Post',  fontSize: 17, color: Colors.grey),
                   ],
                 ),
                 Column(
                   children: [
-                    TextFrave(text: analytics.friends.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
-                    const TextFrave(text: 'Siguiendo', fontSize: 17, color: Colors.grey),
+                    TextCustom(text: analytics.friends.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
+                    const TextCustom(text: 'Siguiendo', fontSize: 17, color: Colors.grey),
                   ],
                 ),
                 Column(
                   children: [
-                    TextFrave(text: analytics.followers.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
-                    const TextFrave(text: 'Seguidores', fontSize: 17, color: Colors.grey),
+                    TextCustom(text: analytics.followers.toString(),  fontSize: 22, fontWeight: FontWeight.w500),
+                    const TextCustom(text: 'Seguidores', fontSize: 17, color: Colors.grey),
                   ],
                 ),
                 
@@ -315,11 +314,11 @@ class _UsernameAndDescription extends StatelessWidget {
     return Column(
       children: [
         Center(
-          child:TextFrave(text: user.username , fontSize: 22, fontWeight: FontWeight.w500 )
+          child:TextCustom(text: user.username , fontSize: 22, fontWeight: FontWeight.w500 )
         ),
         const SizedBox(height: 5.0),
         Center(
-          child: TextFrave(text: user.description, fontSize: 17, color: Colors.grey)
+          child: TextCustom(text: user.description, fontSize: 17, color: Colors.grey)
         ),
       ],
     );

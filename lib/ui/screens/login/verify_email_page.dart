@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/login/started_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -74,9 +73,9 @@ class VerifyEmailPage extends StatelessWidget {
                   ),
     
                   const SizedBox(height: 20.0),
-                  const TextFrave(text: 'Verifica tu correo electronico', fontSize: 20, fontWeight: FontWeight.w500 ),
+                  const TextCustom(text: 'Verifica tu correo electronico', fontSize: 20, fontWeight: FontWeight.w500 ),
                   const SizedBox(height: 20.0),
-                  TextFrave(
+                  TextCustom(
                     text: 'Por favor ingresa el codigo de 5 digitos enviado a tu correo electronico. $email',
                     maxLines: 3,
                     fontSize: 16,
@@ -88,8 +87,8 @@ class VerifyEmailPage extends StatelessWidget {
                     length: 5,
                     keyboardType: TextInputType.number,
                     pinTheme: PinTheme(
-                      inactiveColor: ColorsFrave.secundaryColorFrave,
-                      activeColor: ColorsFrave.primaryColorFrave
+                      inactiveColor: ColorsFrave.secundary,
+                      activeColor: ColorsFrave.primary
                     ),
                     onChanged: (value) {},
                     onCompleted: (value) => userBloc.add( OnVerifyEmailEvent(email, value))

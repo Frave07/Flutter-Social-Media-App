@@ -15,7 +15,7 @@ class ThemeProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const TextFrave(text: 'Cambiar Tema', fontWeight: FontWeight.w500 ),
+        title: const TextCustom(text: 'Cambiar Tema', fontWeight: FontWeight.w500 ),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
@@ -31,15 +31,15 @@ class ThemeProfilePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  TextFrave(text: 'Día'),
-                  Icon(Icons.radio_button_checked, color: ColorsFrave.primaryColorFrave )
+                  TextCustom(text: 'Día'),
+                  Icon(Icons.radio_button_checked, color: ColorsFrave.primary)
                 ],
               ),
               const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  TextFrave(text: 'Noche'),
+                  TextCustom(text: 'Noche'),
                   Icon(Icons.radio_button_off_rounded )
                 ],
               ),
@@ -47,7 +47,7 @@ class ThemeProfilePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  TextFrave(text: 'Sistema'),
+                  TextCustom(text: 'Sistema'),
                   Icon(Icons.radio_button_off_rounded )
                 ],
               ),

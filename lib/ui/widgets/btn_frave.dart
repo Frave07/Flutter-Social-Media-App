@@ -20,7 +20,7 @@ class BtnFrave extends StatelessWidget {
     this.border = 8.0,
     this.colorText = Colors.white,
     this.fontSize = 21,
-    this.backgroundColor = ColorsFrave.secundaryColorFrave
+    this.backgroundColor = ColorsFrave.secundary
   }) : super(key: key);
 
 
@@ -34,7 +34,7 @@ class BtnFrave extends StatelessWidget {
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(border))
         ),
-        child: TextFrave(text: text, color: colorText, fontSize: fontSize),
+        child: TextCustom(text: text, color: colorText, fontSize: fontSize),
         onPressed: onPressed, 
       ),
     );

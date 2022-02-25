@@ -8,11 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -37,7 +36,6 @@ class _AddPostPageState extends State<AddPostPage> {
   @override
   void initState() {
     _assetImagesDevice();
-
     super.initState();
     _descriptionController = TextEditingController();
 
@@ -45,9 +43,7 @@ class _AddPostPageState extends State<AddPostPage> {
 
   @override
   void dispose() {
-    _descriptionController.clear();
     _descriptionController.dispose();
-
     super.dispose();
   }
 
@@ -58,9 +54,10 @@ class _AddPostPageState extends State<AddPostPage> {
     if( result.isAuth ){
 
       List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(onlyAll: true);
-      List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 50);
-
-      setState(() => _mediaList = photos);
+      if(albums.isNotEmpty){
+        List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 50);
+        setState(() => _mediaList = photos);
+      }
 
     }else{
       PhotoManager.openSetting();
@@ -248,9 +245,9 @@ class _AddPostPageState extends State<AddPostPage> {
                           const SizedBox(width: 5.0),
                           BlocBuilder<PostBloc, PostState>(
                             builder: (_, state){
-                              if(state.privacyPost == 1) return const TextFrave(text: 'Todos pueden comentar', fontSize: 16);
-                              if(state.privacyPost == 2) return const TextFrave(text: 'Solo seguidores', fontSize: 16);
-                              if(state.privacyPost == 3) return const TextFrave(text: 'Nadie', fontSize: 16);
+                              if(state.privacyPost == 1) return const TextCustom(text: 'Todos pueden comentar', fontSize: 16);
+                              if(state.privacyPost == 2) return const TextCustom(text: 'Solo seguidores', fontSize: 16);
+                              if(state.privacyPost == 3) return const TextCustom(text: 'Nadie', fontSize: 16);
                               return const SizedBox();
                             }
                           ),
@@ -327,7 +324,7 @@ class _AddPostPageState extends State<AddPostPage> {
           builder: (context, state) => TextButton(
             style: TextButton.styleFrom(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-              backgroundColor: ColorsFrave.primaryColorFrave,
+              backgroundColor: ColorsFrave.primary,
               primary: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))
             ),
@@ -342,7 +339,7 @@ class _AddPostPageState extends State<AddPostPage> {
               }
               
             },
-            child: const TextFrave(
+            child: const TextCustom(
               text: 'Publicar', 
               color: Colors.white, 
               fontSize: 16, 

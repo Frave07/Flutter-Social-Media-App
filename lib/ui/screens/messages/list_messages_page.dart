@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/models/response/response_list_chat.dart';
-import 'package:social_media/services/chat_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/ui/helpers/animation_route.dart';
+import 'package:social_media/domain/models/response/response_list_chat.dart';
+import 'package:social_media/domain/services/chat_services.dart';
+import 'package:social_media/data/env/env.dart';
 import 'package:social_media/ui/screens/messages/chat_message_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -27,7 +27,7 @@ class _ListMessagesPageState extends State<ListMessagesPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const TextFrave(text: 'Mensajes', fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: .8),
+        title: const TextCustom(text: 'Mensajes', fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: .8),
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
@@ -114,13 +114,13 @@ class _ListMessagesPageState extends State<ListMessagesPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextFrave(text: snapshot.data![i].username),
+                                  TextCustom(text: snapshot.data![i].username),
                                   const SizedBox(height: 5.0),
-                                  TextFrave(text: snapshot.data![i].lastMessage, fontSize: 16, color: Colors.grey ),
+                                  TextCustom(text: snapshot.data![i].lastMessage, fontSize: 16, color: Colors.grey ),
                                 ],
                               ),
                               const Spacer(),
-                              TextFrave(text: timeago.format(snapshot.data![i].updatedAt, locale: 'es_short'), fontSize: 15 ),
+                              TextCustom(text: timeago.format(snapshot.data![i].updatedAt, locale: 'es_short'), fontSize: 15 ),
                             ],
                           ),
                         ),

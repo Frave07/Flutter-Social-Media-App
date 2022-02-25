@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_post_profile.dart';
-import 'package:social_media/models/response/response_post_saved.dart';
-import 'package:social_media/services/post_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/models/response/response_post_profile.dart';
+import 'package:social_media/domain/models/response/response_post_saved.dart';
+import 'package:social_media/domain/services/post_services.dart';
 import 'package:social_media/ui/components/animted_toggle.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/profile/followers_page.dart';
 import 'package:social_media/ui/screens/profile/following_page.dart';
 import 'package:social_media/ui/screens/profile/list_photos_profile_page.dart';
@@ -30,23 +29,16 @@ class ProfilePage extends StatelessWidget {
 
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
-        
         if( state is LoadingUserState ){
-
           modalLoading(context, 'Actualizando imagen...');
-
         } 
         if ( state is SuccessUserState ){
-
           Navigator.pop(context);
           modalSuccess(context, 'Imagen actualizada', onPressed: () => Navigator.pop(context));
-
         }
         if ( state is FailureUserState ){
-
           Navigator.pop(context);
           errorMessageSnack(context, state.error);
-
         }
       },
       child: Scaffold(
@@ -66,7 +58,6 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: BlocBuilder<UserBloc, UserState>(
-                buildWhen: (previous, current) => previous != current,
                 builder: (_, state) => AnimatedToggle(
                   values: const ['Fotos', 'Guardados'], 
                   onToggleCalbBack: (value) {
@@ -226,10 +217,10 @@ class _PostAndFollowingAndFollowers extends StatelessWidget {
                     BlocBuilder<UserBloc, UserState>(
                       builder: (_, state) 
                         => state.postsUser?.posters != null
-                        ? TextFrave(text: state.postsUser!.posters.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
-                        : const TextFrave(text: '0')
+                        ? TextCustom(text: state.postsUser!.posters.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
+                        : const TextCustom(text: '0')
                     ),
-                    const TextFrave(text: 'Post',  fontSize: 17, color: Colors.grey,  letterSpacing: .7),
+                    const TextCustom(text: 'Post',  fontSize: 17, color: Colors.grey,  letterSpacing: .7),
                   ],
                 ),
                 InkWell(
@@ -239,10 +230,10 @@ class _PostAndFollowingAndFollowers extends StatelessWidget {
                       BlocBuilder<UserBloc, UserState>(
                         builder: (_, state) 
                           => state.postsUser?.friends != null
-                          ? TextFrave(text: state.postsUser!.friends.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
-                          : const TextFrave(text: '')
+                          ? TextCustom(text: state.postsUser!.friends.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
+                          : const TextCustom(text: '')
                       ),
-                      const TextFrave(text: 'Siguiendo', fontSize: 17, color: Colors.grey,  letterSpacing: .7),
+                      const TextCustom(text: 'Siguiendo', fontSize: 17, color: Colors.grey,  letterSpacing: .7),
                     ],
                   ),
                 ),
@@ -253,10 +244,10 @@ class _PostAndFollowingAndFollowers extends StatelessWidget {
                       BlocBuilder<UserBloc, UserState>(
                         builder: (_, state) 
                           => state.postsUser?.followers != null
-                          ? TextFrave(text: state.postsUser!.followers.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
-                          : const TextFrave(text: '0')
+                          ? TextCustom(text: state.postsUser!.followers.toString(),  fontSize: 22, fontWeight: FontWeight.w500)
+                          : const TextCustom(text: '0')
                       ),
-                      const TextFrave(text: 'Seguidores', fontSize: 17, color: Colors.grey, letterSpacing: .7),
+                      const TextCustom(text: 'Seguidores', fontSize: 17, color: Colors.grey, letterSpacing: .7),
                     ],
                   ),
                 ),
@@ -282,7 +273,7 @@ class _UsernameAndDescription extends StatelessWidget {
           child: BlocBuilder<UserBloc, UserState>(
             builder: (_, state) 
               => ( state.user?.username != null)
-              ? TextFrave(text: state.user!.username != '' ? state.user!.username : 'Usuario' , fontSize: 22, fontWeight: FontWeight.w500 )
+              ? TextCustom(text: state.user!.username != '' ? state.user!.username : 'Usuario' , fontSize: 22, fontWeight: FontWeight.w500 )
               : const CircularProgressIndicator() 
           )
         ),
@@ -291,7 +282,7 @@ class _UsernameAndDescription extends StatelessWidget {
           child: BlocBuilder<UserBloc, UserState>(
             builder: (_, state) 
               => ( state.user?.description != null) 
-              ? TextFrave(
+              ? TextCustom(
                   text: (state.user?.description != '' ? state.user!.description : 'Descripción'), fontSize: 17, color: Colors.grey
                 )
               : const CircularProgressIndicator()
@@ -333,7 +324,7 @@ class _CoverAndProfile extends StatelessWidget {
                 : Container(
                   height: 170,
                   width: size.width,
-                  color: ColorsFrave.primaryColorFrave.withOpacity(.7),
+                  color: ColorsFrave.primary.withOpacity(.7),
                 )
             ),
           ),
@@ -404,6 +395,7 @@ class _CoverAndProfile extends StatelessWidget {
           Positioned(
             right: 40,
             child: IconButton(
+              splashRadius: 20,
               onPressed: () => modalSelectPicture(
                 context: context,
                 title: 'Actualizar imagen de portada',

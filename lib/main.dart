@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/auth/auth_bloc.dart';
-import 'package:social_media/bloc/chat/chat_bloc.dart';
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/bloc/story/story_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
 import 'package:social_media/ui/screens/intro/checking_login_page.dart';
 
 void main() => runApp(const MyApp());

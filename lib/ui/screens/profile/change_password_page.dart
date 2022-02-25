@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/profile/widgets/text_form_profile.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -35,7 +35,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   void dispose() {
-    clear();
     _currentPasswordController.dispose();
     _newPasswordController.dispose();
     _newPasswordAgainController.dispose();
@@ -82,7 +81,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Contraseña', fontSize: 19),
+          title: const TextCustom(text: 'Contraseña', fontSize: 19),
           elevation: 0,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -100,7 +99,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     
                 }
               }, 
-              child: const TextFrave(text: 'Guardar', fontSize: 15, color: ColorsFrave.primaryColorFrave,)
+              child: const TextCustom(text: 'Guardar', fontSize: 15, color: ColorsFrave.primary)
             )
           ],
         ),

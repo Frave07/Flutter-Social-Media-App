@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:social_media/bloc/chat/chat_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/models/response/response_list_messages.dart';
-import 'package:social_media/services/chat_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/models/response/response_list_messages.dart';
+import 'package:social_media/domain/services/chat_services.dart';
 import 'package:social_media/ui/screens/messages/widgets/chat_message.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -117,7 +116,7 @@ class _ChatMessagesPageState extends State<ChatMessagesPage> with TickerProvider
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextFrave(text: widget.usernameTarget, fontWeight: FontWeight.w500, fontSize: 21),
+                TextCustom(text: widget.usernameTarget, fontWeight: FontWeight.w500, fontSize: 21),
               ],
             ),
           ],
@@ -208,7 +207,7 @@ class _ChatMessagesPageState extends State<ChatMessagesPage> with TickerProvider
               onPressed: state.isWritting
               ? () => _handleSubmit(_messageController.text.trim())
               : null, 
-              child: const TextFrave(text: 'Enviar', color: ColorsFrave.primaryColorFrave )
+              child: const TextCustom(text: 'Enviar', color: ColorsFrave.primary)
             ),
           )
         ],

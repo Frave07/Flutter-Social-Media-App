@@ -1,26 +1,24 @@
 import 'dart:ui';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_stories.dart';
-import 'package:social_media/services/story_services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:social_media/domain/models/response/response_stories.dart';
+import 'package:social_media/domain/services/story_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/Story/add_story_page.dart';
 import 'package:social_media/ui/screens/Story/view_story_page.dart';
 import 'package:social_media/ui/screens/comments/comments_post_page.dart';
 import 'package:social_media/ui/screens/messages/list_messages_page.dart';
 import 'package:social_media/ui/screens/notifications/notifications_page.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/models/response/response_post.dart';
-import 'package:social_media/services/post_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/domain/models/response/response_post.dart';
+import 'package:social_media/domain/services/post_services.dart';
+import 'package:social_media/data/env/env.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
-
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -51,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Frave social', fontWeight: FontWeight.w500, fontSize: 21, color: ColorsFrave.secundaryColorFrave),
+          title: const TextCustom(text: 'Frave social', fontWeight: FontWeight.w500, fontSize: 21, color: ColorsFrave.secundary),
           elevation: 0,
           actions: [
             IconButton(
@@ -163,7 +161,7 @@ class _ListHistories extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 5.0),
-                      TextFrave(text: state.user!.username, fontSize: 15)
+                      TextCustom(text: state.user!.username, fontSize: 15)
                     ],
                 ),
               )
@@ -219,7 +217,7 @@ class _ListHistories extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 5.0),
-                              TextFrave(text: snapshot.data![i].username, fontSize: 15)
+                              TextCustom(text: snapshot.data![i].username, fontSize: 15)
                             ],
                           ),
                         ),
@@ -306,8 +304,8 @@ class _ListViewPosts extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextFrave(text: posts.username, color: Colors.white, fontWeight: FontWeight.w500 ),
-                                  TextFrave(text: time, fontSize: 15, color: Colors.white ),
+                                  TextCustom(text: posts.username, color: Colors.white, fontWeight: FontWeight.w500 ),
+                                  TextCustom(text: time, fontSize: 15, color: Colors.white ),
                                 ],
                               )
                             ],
@@ -351,7 +349,7 @@ class _ListViewPosts extends StatelessWidget {
                                         const SizedBox(width: 8.0),
                                         InkWell(
                                           onTap: () {},
-                                          child: TextFrave(text: posts.countLikes.toString(), fontSize: 16, color: Colors.white)
+                                          child: TextCustom(text: posts.countLikes.toString(), fontSize: 16, color: Colors.white)
                                         )
                                       ],
                                     ),
@@ -365,7 +363,7 @@ class _ListViewPosts extends StatelessWidget {
                                         children: [
                                           SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white),
                                           const SizedBox(width: 5.0),
-                                          TextFrave(text: posts.countComment.toString(), fontSize: 16, color: Colors.white)
+                                          TextCustom(text: posts.countComment.toString(), fontSize: 16, color: Colors.white)
                                         ],
                                       ),
                                     ),

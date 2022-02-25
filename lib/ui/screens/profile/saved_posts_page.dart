@@ -1,10 +1,9 @@
 import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:social_media/models/response/response_post_saved.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/models/response/response_post_saved.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
 
@@ -23,7 +22,7 @@ class SavedPostsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const TextFrave(text: 'Todos los posts', fontWeight: FontWeight.w500),
+        title: const TextCustom(text: 'Todos los posts', fontWeight: FontWeight.w500),
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -81,7 +80,7 @@ class SavedPostsPage extends StatelessWidget {
                                 backgroundImage: NetworkImage(Environment.baseUrl + savedPost[i].avatar),
                               ),
                             const SizedBox(width: 5.0),
-                            TextFrave(text: savedPost[i].username, fontWeight: FontWeight.w500, color: Colors.white ),
+                            TextCustom(text: savedPost[i].username, fontWeight: FontWeight.w500, color: Colors.white ),
                             ],
                           ),
                           IconButton(
@@ -117,7 +116,7 @@ class SavedPostsPage extends StatelessWidget {
                                           children: const [
                                             Icon(Icons.favorite_outline_rounded, color: Colors.white),
                                             SizedBox(width: 8.0),
-                                            TextFrave(text: '52k', fontSize: 16, color: Colors.white)
+                                            TextCustom(text: '52k', fontSize: 16, color: Colors.white)
                                           ],
                                         ),
                                       ),
@@ -128,7 +127,7 @@ class SavedPostsPage extends StatelessWidget {
                                           children: [
                                             SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white),
                                             const SizedBox(width: 5.0),
-                                            const TextFrave(text: '1.2k', fontSize: 16, color: Colors.white)
+                                            const TextCustom(text: '1.2k', fontSize: 16, color: Colors.white)
                                           ],
                                         ),
                                       ),

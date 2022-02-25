@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/data/env.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_followers.dart';
-import 'package:social_media/services/user_services.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/domain/models/response/response_followers.dart';
+import 'package:social_media/domain/services/user_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/profile/profile_another_user_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -39,7 +38,7 @@ class _FollowersPageState extends State<FollowersPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
             backgroundColor: Colors.white,
-            title: const TextFrave(text: 'Seguidores', letterSpacing: .8, fontSize: 19),
+            title: const TextCustom(text: 'Seguidores', letterSpacing: .8, fontSize: 19),
             elevation: 0,
             leading: IconButton(
               splashRadius: 20,
@@ -111,8 +110,8 @@ class _ListFollowers extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextFrave(text: follow[i].username, fontSize: 16 ),
-                        TextFrave(text: follow[i].fullname, color: Colors.grey, fontSize: 15 )
+                        TextCustom(text: follow[i].username, fontSize: 16 ),
+                        TextCustom(text: follow[i].fullname, color: Colors.grey, fontSize: 15 )
                       ],
                     ),
                   ],
@@ -128,7 +127,7 @@ class _ListFollowers extends StatelessWidget {
                     onTap: () => userBloc.add(OnDeletefollowersEvent(follow[i].uidUser)),
                     child: const Padding(
                       padding:  EdgeInsets.symmetric(horizontal: 17.0, vertical: 6.0),
-                      child: TextFrave(text: 'Eliminar', fontSize: 16),
+                      child: TextCustom(text: 'Eliminar', fontSize: 16),
                     )
                   ),
                 ),

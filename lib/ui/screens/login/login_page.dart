@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/auth/auth_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/helpers/validate_form.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/screens/login/forgot_password_page.dart';
 import 'package:social_media/ui/screens/login/verify_email_page.dart';
@@ -94,16 +91,16 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 10.0),
-                    const TextFrave(
+                    const TextCustom(
                        text: 'Bienvenido de nuevo!', 
                        letterSpacing: 1.5, 
                        fontWeight: FontWeight.w600, 
                        fontSize: 30, 
-                       color: ColorsFrave.secundaryColorFrave
+                       color: ColorsFrave.secundary
                     ),
               
                     const SizedBox(height: 10.0),
-                    const TextFrave(
+                    const TextCustom(
                        text: 'Inicia sesión para continuar.', 
                        fontSize: 18,
                        letterSpacing: 1.0,
@@ -143,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                     Center(
                       child: InkWell(
                         onTap: () => Navigator.push(context, routeSlide(page: const ForgotPasswordPage())),
-                        child: const TextFrave(text: 'Olvide mi contraseña?')
+                        child: const TextCustom(text: 'Olvide mi contraseña?')
                       )
                     )
               

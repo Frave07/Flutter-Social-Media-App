@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/ui/themes/colors_frave.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:social_media/ui/themes/colors_frave.dart';
 
 
 class ChatMessage extends StatelessWidget {
@@ -53,13 +53,13 @@ class ChatMessage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextFrave(text: timeago.format(time ?? DateTime.now() , locale: 'es_short'), fontSize: 15, color: Colors.grey ),
+            TextCustom(text: timeago.format(time ?? DateTime.now() , locale: 'es_short'), fontSize: 15, color: Colors.grey ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
               margin: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
-              child: TextFrave(text: message, color: Colors.white, fontSize: 17 ),
+              child: TextCustom(text: message, color: Colors.white, fontSize: 17 ),
               decoration: BoxDecoration(
-                color: ColorsFrave.primaryColorFrave,
+                color: ColorsFrave.primary,
                 borderRadius: BorderRadius.circular(10.0)
               ),
             ),
@@ -80,13 +80,13 @@ class ChatMessage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
               margin: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
-              child: TextFrave(text: message, fontSize: 17 ),
+              child: TextCustom(text: message, fontSize: 17 ),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(10.0)
               ),
             ),
-            TextFrave(text: timeago.format(time ?? DateTime.now(), locale: 'es_short'), fontSize: 15, color: Colors.grey )
+            TextCustom(text: timeago.format(time ?? DateTime.now(), locale: 'es_short'), fontSize: 15, color: Colors.grey )
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/ui/themes/colors_frave.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
 class AnimatedToggle extends StatefulWidget {
@@ -38,14 +37,14 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
               width: width,
               height: width * .14,
               decoration: ShapeDecoration(
-                color: ColorsFrave.primaryColorFrave.withOpacity(.7),
+                color: const Color(0xffF8F9FA),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(width * .1))
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(widget.values.length, (i) => Padding(
                       padding: EdgeInsets.symmetric(horizontal: width * .1),
-                      child: TextFrave(text: widget.values[i], fontSize: width * .05,),
+                      child: TextCustom(text: widget.values[i], fontSize: width * .05,),
                     )
                 )
               ),
@@ -68,7 +67,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                     color: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(width * .1)),
                   ),
-                  child: TextFrave(text: state.isPhotos 
+                  child: TextCustom(text: state.isPhotos 
                     ? widget.values[0]
                     : widget.values[1],
                     fontSize: width * .05,

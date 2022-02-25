@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/data/env.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_search.dart';
-import 'package:social_media/models/response/response_post.dart';
-import 'package:social_media/services/post_services.dart';
-import 'package:social_media/services/user_services.dart';
+import 'package:social_media/data/env/env.dart';
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
+import 'package:social_media/domain/models/response/response_post.dart';
+import 'package:social_media/domain/services/post_services.dart';
+import 'package:social_media/domain/services/user_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
+import 'package:social_media/domain/models/response/response_search.dart';
 import 'package:social_media/ui/screens/profile/profile_another_user_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -118,7 +117,7 @@ class _SearchPageState extends State<SearchPage> {
 
         if( snapshot.data!.isEmpty ) {
           return ListTile(
-            title: TextFrave(text: 'Sin resultados para ${_searchController.text}'),
+            title: TextCustom(text: 'Sin resultados para ${_searchController.text}'),
           );
         }
 
@@ -168,8 +167,8 @@ class _ListUsers extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextFrave(text: listUser[i].username),
-                      TextFrave(text: listUser[i].fullname, color: Colors.grey),
+                      TextCustom(text: listUser[i].username),
+                      TextCustom(text: listUser[i].fullname, color: Colors.grey),
                     ],
                   )
                 ],

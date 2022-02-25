@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/profile/widgets/item_profile.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -32,7 +32,7 @@ class PrivacyProgilePage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Privacidad', fontSize: 19, fontWeight: FontWeight.w500 ),
+          title: const TextCustom(text: 'Privacidad', fontSize: 19, fontWeight: FontWeight.w500 ),
           elevation: 0,
           leading: IconButton(
             onPressed: () => Navigator.pop(context), 
@@ -45,7 +45,7 @@ class PrivacyProgilePage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             children: [
               
-              const TextFrave(text: 'Privacidad de la cuenta', fontSize: 16, fontWeight: FontWeight.w500),
+              const TextCustom(text: 'Privacidad de la cuenta', fontSize: 16, fontWeight: FontWeight.w500),
               const SizedBox(height: 10.0),
               SizedBox(
                 height: 50,
@@ -57,10 +57,10 @@ class PrivacyProgilePage extends StatelessWidget {
                       children: [
                         const Icon(Icons.lock_outlined),
                         const SizedBox(width: 10),
-                        const TextFrave(text: 'Cuenta privada', fontSize: 17 ),
+                        const TextCustom(text: 'Cuenta privada', fontSize: 17 ),
                         const Spacer(),
                         ( state.user != null && state.user!.isPrivate == 1)
-                          ? const Icon(Icons.radio_button_checked_rounded, color: ColorsFrave.primaryColorFrave)
+                          ? const Icon(Icons.radio_button_checked_rounded, color: ColorsFrave.primary)
                           : const Icon(Icons.radio_button_unchecked_rounded),
                         const SizedBox(width: 10),
                       ],
@@ -72,7 +72,7 @@ class PrivacyProgilePage extends StatelessWidget {
     
               const Divider(),
               const SizedBox(height: 10.0),
-              const TextFrave(text: 'Interaciones', fontSize: 16, fontWeight: FontWeight.w500),
+              const TextCustom(text: 'Interaciones', fontSize: 16, fontWeight: FontWeight.w500),
               const SizedBox(height: 10.0),
               ItemProfile(
                 text: 'Comentarios', 
@@ -103,7 +103,7 @@ class PrivacyProgilePage extends StatelessWidget {
               const Divider(),
               const SizedBox(height: 10.0),
     
-              const TextFrave(text: 'Conecciones', fontSize: 16, fontWeight: FontWeight.w500),
+              const TextCustom(text: 'Conecciones', fontSize: 16, fontWeight: FontWeight.w500),
               const SizedBox(height: 10.0),
     
               ItemProfile(

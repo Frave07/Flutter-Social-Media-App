@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:social_media/bloc/story/story_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -36,11 +34,12 @@ class _AddStoryPageState extends State<AddStoryPage> {
   _assetImagesDevice() async {
     var result = await PhotoManager.requestPermissionExtend();
     if (result.isAuth) {
-      List<AssetPathEntity> albums =
-          await PhotoManager.getAssetPathList(onlyAll: true);
-      List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 90);
+      List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(onlyAll: true);
 
-      setState(() => _mediaList = photos);
+      if(albums.isNotEmpty){
+        List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 90);
+        setState(() => _mediaList = photos);
+      }
     } else {
       PhotoManager.openSetting();
     }
@@ -71,9 +70,9 @@ class _AddStoryPageState extends State<AddStoryPage> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          title:  const TextFrave(text: 'Galeria', letterSpacing: .8, fontSize: 19),
+          title:  const TextCustom(text: 'Galeria', fontSize: 19, letterSpacing: .8,),
           leading: IconButton(
-            splashRadius: 25,
+            splashRadius: 20,
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.close, color: Colors.black87)
           ),
@@ -85,7 +84,7 @@ class _AddStoryPageState extends State<AddStoryPage> {
                     storyBloc.add( OnAddNewStoryEvent(state.image!.path) );
                   }
                 },
-                child: const TextFrave(text: 'Hecho', fontSize: 17, color: ColorsFrave.primaryColorFrave )
+                child: const TextCustom(text: 'Hecho', fontSize: 17, color: ColorsFrave.primary)
               ),
             )
           ],

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:social_media/bloc/auth/auth_bloc.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/login/started_page.dart';
 import 'package:social_media/ui/screens/profile/account_profile_page.dart';
 import 'package:social_media/ui/screens/profile/change_password_page.dart';
@@ -28,7 +27,7 @@ class SettingProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const TextFrave(text: 'Configuración', fontSize: 19, fontWeight: FontWeight.w500),
+        title: const TextCustom(text: 'Configuración', fontSize: 19, fontWeight: FontWeight.w500),
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context), 
@@ -104,23 +103,23 @@ class SettingProfilePage extends StatelessWidget {
               children: const [
                 Icon(Icons.copyright_outlined),
                 SizedBox(width: 5.0),
-                TextFrave(text: 'FRAVE DEVELOPER', fontSize: 17, fontWeight: FontWeight.w500),
+                TextCustom(text: 'FRAVE DEVELOPER', fontSize: 17, fontWeight: FontWeight.w500),
               ],
             ),
             const SizedBox(height: 30.0),
-            const TextFrave(text: 'Sesiones', fontSize: 17, fontWeight: FontWeight.w500),
+            const TextCustom(text: 'Sesiones', fontSize: 17, fontWeight: FontWeight.w500),
             
             const SizedBox(height: 10.0),
             ItemProfile(
               text: 'Agregar o cambiar de cuenta', 
               icon: Icons.add,
-              colorText: ColorsFrave.primaryColorFrave,
+              colorText: ColorsFrave.primary,
               onPressed: () {}
             ),
             ItemProfile(
               text: 'Cerrar cuenta ${userBloc.state.user!.username}', 
               icon: Icons.logout_rounded,
-              colorText: ColorsFrave.primaryColorFrave,
+              colorText: ColorsFrave.primary,
               onPressed: () {
                 authBloc.add( OnLogOutEvent() );
                 userBloc.add( OnLogOutUser() );

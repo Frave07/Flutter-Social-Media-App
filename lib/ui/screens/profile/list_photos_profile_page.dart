@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
+import 'package:social_media/domain/models/response/response_post_by_user.dart';
+import 'package:social_media/domain/services/post_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_post_by_user.dart';
-import 'package:social_media/services/post_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/data/env/env.dart';
 import 'package:social_media/ui/screens/comments/comments_post_page.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -47,7 +46,7 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Publicaciones', fontWeight: FontWeight.w500),
+          title: const TextCustom(text: 'Publicaciones', fontWeight: FontWeight.w500),
           elevation: 0,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -122,8 +121,8 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        TextFrave(text: snapshot.data![i].username, color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20 ),
-                                        TextFrave(text: timeago.format(snapshot.data![i].createdAt, locale: 'es'), fontSize: 14, color: Colors.white ),
+                                        TextCustom(text: snapshot.data![i].username, color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20 ),
+                                        TextCustom(text: timeago.format(snapshot.data![i].createdAt, locale: 'es'), fontSize: 14, color: Colors.white ),
                                       ],
                                     )
                                   ],
@@ -163,7 +162,7 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
                                                   ? const Icon(Icons.favorite_rounded, color: Colors.red)
                                                   : const Icon(Icons.favorite_outline_rounded, color: Colors.white),
                                                   const SizedBox(width: 8.0),
-                                                  TextFrave(text: snapshot.data![i].countLikes.toString(), fontSize: 16, color: Colors.white)
+                                                  TextCustom(text: snapshot.data![i].countLikes.toString(), fontSize: 16, color: Colors.white)
                                                 ],
                                               ),
                                             ),
@@ -179,7 +178,7 @@ class _ListPhotosProfilePageState extends State<ListPhotosProfilePage> {
                                                 children: [
                                                   SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white),
                                                   const SizedBox(width: 5.0),
-                                                  TextFrave(text: snapshot.data![i].countComment.toString(), fontSize: 16, color: Colors.white)
+                                                  TextCustom(text: snapshot.data![i].countComment.toString(), fontSize: 16, color: Colors.white)
                                                 ],
                                               ),
                                             ),

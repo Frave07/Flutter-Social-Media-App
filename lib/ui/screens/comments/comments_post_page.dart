@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:social_media/bloc/post/post_bloc.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/post/post_bloc.dart';
+import 'package:social_media/domain/models/response/response_comments.dart';
+import 'package:social_media/domain/services/post_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/models/response/response_comments.dart';
-import 'package:social_media/services/post_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/data/env/env.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
 class CommentsPostPage extends StatefulWidget {
@@ -64,7 +64,7 @@ class _CommentsPostPageState extends State<CommentsPostPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Comentarios', fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: .8),
+          title: const TextCustom(text: 'Comentarios', fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: .8),
           centerTitle: true,
           elevation: 0,
           leading: IconButton(
@@ -108,7 +108,7 @@ class _CommentsPostPageState extends State<CommentsPostPage> {
                                   mainAxisSize: MainAxisSize.min, 
                                   crossAxisAlignment: CrossAxisAlignment.start, 
                                   children: [
-                                    TextFrave(text: snapshot.data![i].username, fontSize: 16, fontWeight: FontWeight.w500),
+                                    TextCustom(text: snapshot.data![i].username, fontSize: 16, fontWeight: FontWeight.w500),
                                     Text(snapshot.data![i].comment),
                                     const SizedBox(height: 5.0),
                                     Row(
@@ -121,7 +121,7 @@ class _CommentsPostPageState extends State<CommentsPostPage> {
                                           ? const Icon(Icons.favorite_rounded, size: 19, color: Colors.red)
                                           : const Icon(Icons.favorite_border_rounded, size: 19),
                                         ),
-                                        TextFrave(text: timeago.format(snapshot.data![i].createdAt, locale: 'en_short'), fontSize: 14),
+                                        TextCustom(text: timeago.format(snapshot.data![i].createdAt, locale: 'en_short'), fontSize: 14),
                                       ],
                                     )
                                     // add dots to show this is a longer text

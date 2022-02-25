@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/helpers.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/profile/widgets/text_form_profile.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -41,15 +41,10 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
 
   @override
   void dispose() {
-    _userController.clear();
     _userController.dispose();
-    _descriptionController.clear();
     _descriptionController.dispose();
-    _emailController.clear();
     _emailController.dispose();
-    _fullNameController.clear();
     _fullNameController.dispose();
-    _phoneController.clear();
     _phoneController.dispose();
     super.dispose();
   }
@@ -85,7 +80,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Actualizar perfil', fontSize: 19),
+          title: const TextCustom(text: 'Actualizar perfil', fontSize: 19),
           elevation: 0,
           leading: IconButton(
             highlightColor: Colors.transparent,
@@ -104,7 +99,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                   ));
                 }
               }, 
-              child: const TextFrave(text: 'Guardar', color: ColorsFrave.primaryColorFrave, fontSize: 14)
+              child: const TextCustom(text: 'Guardar', color: ColorsFrave.primary, fontSize: 14)
             )
           ],
         ),

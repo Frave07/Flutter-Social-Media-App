@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/domain/models/response/response_notifications.dart';
+import 'package:social_media/domain/services/notifications_services.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:social_media/bloc/user/user_bloc.dart';
-import 'package:social_media/helpers/animation_route.dart';
-import 'package:social_media/helpers/helpers.dart';
-import 'package:social_media/models/response/response_notifications.dart';
-import 'package:social_media/services/notifications_services.dart';
-import 'package:social_media/data/env.dart';
+import 'package:social_media/data/env/env.dart';
 import 'package:social_media/ui/screens/home/home_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
@@ -42,7 +41,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextFrave(text: 'Actividad', fontWeight: FontWeight.w500, letterSpacing: .9, fontSize: 19 ),
+          title: const TextCustom(text: 'Actividad', fontWeight: FontWeight.w500, letterSpacing: .9, fontSize: 19 ),
           elevation: 0,
           leading: IconButton(
             splashRadius: 20,
@@ -91,21 +90,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      TextFrave(text: snapshot.data![i].follower, fontWeight: FontWeight.w500, fontSize: 16),
-                                      TextFrave(text: timeago.format(snapshot.data![i].createdAt, locale: 'es_short'), fontSize: 14, color: Colors.grey),
+                                      TextCustom(text: snapshot.data![i].follower, fontWeight: FontWeight.w500, fontSize: 16),
+                                      TextCustom(text: timeago.format(snapshot.data![i].createdAt, locale: 'es_short'), fontSize: 14, color: Colors.grey),
                                     ],
                                   ),
                                   const SizedBox(width: 5.0),
                                   if( snapshot.data![i].typeNotification == '1' )
-                                    const TextFrave(text: 'Te envio solicitud ', fontSize: 16),
+                                    const TextCustom(text: 'Te envio solicitud ', fontSize: 16),
                                   if( snapshot.data![i].typeNotification == '3' )
-                                    const TextFrave(text: 'Comenzo a seguirte', fontSize: 16),
+                                    const TextCustom(text: 'Comenzo a seguirte', fontSize: 16),
                                   if( snapshot.data![i].typeNotification == '2' )
                                     Row(
                                       children: const [
-                                        TextFrave(text:'Le dio ', fontSize: 16),
-                                        TextFrave(text:'Me Gusta ', fontSize: 16, fontWeight: FontWeight.w500 ),
-                                        TextFrave(text:'a tu foto', fontSize: 16),
+                                        TextCustom(text:'Le dio ', fontSize: 16),
+                                        TextCustom(text:'Me Gusta ', fontSize: 16, fontWeight: FontWeight.w500 ),
+                                        TextCustom(text:'a tu foto', fontSize: 16),
                                       ],
                                     ),
                                 ],
@@ -115,7 +114,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           
                           if( snapshot.data![i].typeNotification == '1' )
                             Card(
-                              color: ColorsFrave.primaryColorFrave,
+                              color: ColorsFrave.primary,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                               elevation: 0,
                               child: InkWell(
@@ -128,7 +127,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 },
                                 child: const Padding(
                                   padding:  EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                                  child: TextFrave(text: 'Aceptar', fontSize: 16, color: Colors.white),
+                                  child: TextCustom(text: 'Aceptar', fontSize: 16, color: Colors.white),
                                 )
                               ),
                             ),

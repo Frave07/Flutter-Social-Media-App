@@ -67,7 +67,7 @@ class _ItemProfile extends StatelessWidget {
               )
             : const CircleAvatar(
                 radius: 15,
-                backgroundColor: ColorsFrave.primaryColorFrave,
+                backgroundColor: ColorsFrave.primary,
                 child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
               )
       ),
@@ -100,8 +100,8 @@ class _ItemButtom extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         child: ( isIcon ) 
-          ? Icon(icon, color: ( i == index ) ? ColorsFrave.primaryColorFrave : Colors.black87 , size: 28)
-          : SvgPicture.asset(iconString!, height: 25, color: ( i == index ) ? ColorsFrave.primaryColorFrave : Colors.black87 ),
+          ? Icon(icon, color: ( i == index ) ? ColorsFrave.primary : Colors.black87 , size: 28)
+          : SvgPicture.asset(iconString!, height: 25, color: ( i == index ) ? ColorsFrave.primary : Colors.black87 ),
       ),
     );
   }

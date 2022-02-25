@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:social_media/helpers/animation_route.dart';
+import 'package:social_media/ui/helpers/helpers.dart';
 import 'package:social_media/ui/screens/login/login_page.dart';
 import 'package:social_media/ui/screens/login/register_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
@@ -28,8 +28,8 @@ class StartedPage extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset('assets/img/logo-black.png', height: 30),
-                  const TextFrave(text: 'Frave', fontWeight: FontWeight.w500, color: ColorsFrave.primaryColorFrave ),
-                  const TextFrave(text: ' Social', fontSize: 17)
+                  const TextCustom(text: 'Frave', fontWeight: FontWeight.w500, color: ColorsFrave.primary),
+                  const TextCustom(text: ' Social', fontSize: 17)
                 ],
               ),
             ),
@@ -42,10 +42,10 @@ class StartedPage extends StatelessWidget {
               ),
             ),
 
-            const TextFrave(
+            const TextCustom(
               text: 'Bienvenido !', 
               letterSpacing: 2.0, 
-              color: ColorsFrave.secundaryColorFrave, 
+              color: ColorsFrave.secundary,
               fontWeight: FontWeight.w600,
               fontSize: 30,
             ),
@@ -53,7 +53,7 @@ class StartedPage extends StatelessWidget {
             const SizedBox(height: 10.0),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextFrave(
+              child: TextCustom(
                 text: 'El mejor lugar para escribir historias y compartir tus experiencias.',
                 textAlign: TextAlign.center,
                 maxLines: 2,
@@ -69,10 +69,10 @@ class StartedPage extends StatelessWidget {
                 width: size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: ColorsFrave.secundaryColorFrave,
+                    backgroundColor: ColorsFrave.secundary,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0))
                   ),
-                  child: const TextFrave(text: 'Iniciar sesión', color: Colors.white, fontSize: 20),
+                  child: const TextCustom(text: 'Iniciar sesión', color: Colors.white, fontSize: 20),
                   onPressed: () => Navigator.push(context, routeSlide(page: const LoginPage())), 
                 ),
               ),
@@ -86,10 +86,10 @@ class StartedPage extends StatelessWidget {
                 width: size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
-                  border: Border.all(color: ColorsFrave.secundaryColorFrave, width: 1.5)
+                  border: Border.all(color: ColorsFrave.secundary, width: 1.5)
                 ),
                 child: TextButton(
-                  child: const TextFrave(text: 'Registrate', color: ColorsFrave.secundaryColorFrave, fontSize: 20),
+                  child: const TextCustom(text: 'Registrate', color: ColorsFrave.secundary, fontSize: 20),
                   onPressed: () => Navigator.push(context, routeSlide(page: const RegisterPage())), 
                 ),
               ),

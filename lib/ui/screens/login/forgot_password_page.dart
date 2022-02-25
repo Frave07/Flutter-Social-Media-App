@@ -51,16 +51,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 
-                const TextFrave(
+                const TextCustom(
                     text: 'Recupera tu cuenta!', 
                     letterSpacing: 1.5, 
                     fontWeight: FontWeight.w500, 
                     fontSize: 25, 
-                    color: ColorsFrave.secundaryColorFrave
+                    color: ColorsFrave.secundary
                 ),
           
                 const SizedBox(height: 10.0),
-                const TextFrave(
+                const TextCustom(
                     text: 'Introduce tu correo electronico para recuperar tu cuenta.', 
                     fontSize: 17,
                     letterSpacing: 1.0,

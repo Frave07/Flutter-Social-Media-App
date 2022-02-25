@@ -26,13 +26,13 @@ class TextFormProfile extends StatelessWidget {
     return TextFormField(
       controller: controller,
       style: GoogleFonts.getFont('Roboto', fontSize: 18),
-      cursorColor: ColorsFrave.secundaryColorFrave,
+      cursorColor: ColorsFrave.secundary,
       keyboardType: keyboardType,
       readOnly: isReadOnly,
       maxLines: maxLines,
       decoration: InputDecoration(
         enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)), 
-        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: ColorsFrave.primaryColorFrave)), 
+        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: ColorsFrave.primary)), 
         labelText: labelText,
       ),
       validator: validator,

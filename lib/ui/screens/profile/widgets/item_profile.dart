@@ -32,7 +32,7 @@ class ItemProfile extends StatelessWidget {
           children: [
             Icon(icon, color: colorText),
             const SizedBox(width: 10.0),
-            TextFrave(text: text, fontSize: 17, color: colorText)
+            TextCustom(text: text, fontSize: 17, color: colorText)
           ],
         ),
       ),
