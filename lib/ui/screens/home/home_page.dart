@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:social_media/domain/blocs/blocs.dart';
+import 'package:social_media/ui/screens/addPost/add_post_page.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:social_media/domain/models/response/response_stories.dart';
 import 'package:social_media/domain/services/story_services.dart';
@@ -49,9 +50,16 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const TextCustom(text: 'Frave social', fontWeight: FontWeight.w500, fontSize: 21, color: ColorsFrave.secundary),
+          title: const TextCustom(text: 'Frave social', fontWeight: FontWeight.w600, fontSize: 22, color: ColorsFrave.secundary, isTitle: true,),
           elevation: 0,
           actions: [
+            IconButton(
+              splashRadius: 20,
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(context, routeSlide(page: const AddPostPage()), (_) => false);
+              },
+              icon: SvgPicture.asset('assets/svg/add_rounded.svg', height: 32)
+            ),
             IconButton(
               splashRadius: 20,
               onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const NotificationsPage()), (_) => false),

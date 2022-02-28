@@ -22,13 +22,19 @@ Frave Developer
 ## Requirements
 
 - Change IP
-    - lib/services/url_service.dart
+    - lib/data/env/env.dart
 
 ## Flutter
 
 - Flutter bloc
 - Socket io client
 - http
+
+## Next Features
+
+- Reel
+
+## Commands
 
 ```sh
     flutter pub upgrade

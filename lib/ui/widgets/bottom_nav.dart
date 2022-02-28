@@ -3,18 +3,19 @@ part of 'widgets.dart';
 class BottomNavigationFrave extends StatelessWidget {
 
   final int index;
+  final bool isReel;
 
-  const BottomNavigationFrave({Key? key, required this.index}) : super(key: key);
+  const BottomNavigationFrave({Key? key, required this.index, this.isReel = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return Container(
       height: 55,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(color: Colors.grey, blurRadius: 10, spreadRadius: -5)
+      decoration: BoxDecoration(
+        color: isReel ? Colors.black : Colors.white,
+        boxShadow: const [
+          BoxShadow(color: Colors.grey, blurRadius: 9, spreadRadius: -4)
         ]
       ),
       child: Row(
@@ -25,24 +26,29 @@ class BottomNavigationFrave extends StatelessWidget {
             index: index,
             isIcon: false,
             iconString: 'assets/svg/home_icon.svg',
+            isReel: isReel,
             onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const HomePage()), (_) => false),
           ),
           _ItemButtom(
             i: 2,
             index: index,
             icon: Icons.search,
+            isReel: isReel,
             onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const SearchPage()), (_) => false),
           ),
           _ItemButtom(
             i: 3,
             index: index,
-            icon: Icons.add_circle_outline_rounded,
-            onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const AddPostPage()), (_) => false),
+            isIcon: false,
+            isReel: isReel,
+            iconString: 'assets/svg/movie_reel.svg',
+            onPressed: () => Navigator.push(context, routeSlide(page: const ReelHomeScreen())),
           ),
           _ItemButtom(
             i: 4,
             index: index,
             icon: Icons.favorite_border_rounded,
+            isReel: isReel,
             onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const NotificationsPage()), (_) => false),
           ),
           _ItemProfile()
@@ -83,6 +89,7 @@ class _ItemButtom extends StatelessWidget {
   final IconData? icon;
   final String? iconString;
   final Function() onPressed;
+  final bool isReel;
 
   const _ItemButtom({
     Key? key,
@@ -92,6 +99,7 @@ class _ItemButtom extends StatelessWidget {
     this.icon,
     this.iconString,
     this.isIcon = true,
+    this.isReel = false,
   }) : super(key: key);
 
   @override
@@ -100,8 +108,8 @@ class _ItemButtom extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         child: ( isIcon ) 
-          ? Icon(icon, color: ( i == index ) ? ColorsFrave.primary : Colors.black87 , size: 28)
-          : SvgPicture.asset(iconString!, height: 25, color: ( i == index ) ? ColorsFrave.primary : Colors.black87 ),
+          ? Icon(icon, color: ( i == index ) ? ColorsFrave.primary : isReel ?Colors.white : Colors.black87 , size: 28)
+          : SvgPicture.asset(iconString!, height: 25, color: ( i == index ) ? ColorsFrave.primary : isReel ?Colors.white : Colors.black87),
       ),
     );
   }
