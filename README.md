@@ -17,6 +17,7 @@ Frave Developer
 ### Donate
 
 <a href="https://www.buymeacoffee.com/frave"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="200"></a>
+<a>[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I1C3R4S)</a>
 
 
 ## Requirements
