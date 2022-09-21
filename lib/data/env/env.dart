@@ -1,8 +1,5 @@
-
 class Environment {
+  static const String baseUrl = 'https://ac70-45-89-173-195.ngrok.io/';
 
-  static const String baseUrl = 'http://192.168.0.102:7070/';
-  
-  static const String urlApi = 'http://192.168.0.102:7070/api';
-
+  static const String urlApi = 'https://ac70-45-89-173-195.ngrok.io/api';
 }
