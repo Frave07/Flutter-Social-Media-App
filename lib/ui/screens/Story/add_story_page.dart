@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -35,19 +34,17 @@ class _AddStoryPageState extends State<AddStoryPage> {
   _assetImagesDevice() async {
     var result = await PhotoManager.requestPermissionExtend();
     if (result.isAuth) {
-      List<AssetPathEntity> albums =
-          await PhotoManager.getAssetPathList(onlyAll: true);
+      List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(onlyAll: true);
 
-      if (albums.isNotEmpty) {
-        List<AssetEntity> photos =
-            await albums[0].getAssetListPaged(page: 0, size: 90);
-
+      if(albums.isNotEmpty){
+        List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 90);
         setState(() => _mediaList = photos);
       }
     } else {
       PhotoManager.openSetting();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,18 +53,15 @@ class _AddStoryPageState extends State<AddStoryPage> {
 
     return BlocListener<StoryBloc, StoryState>(
       listener: (context, state) {
-        if (state is LoadingStory) {
+        if( state is LoadingStory ){
           modalLoading(context, 'Cargando...');
-        } else if (state is FailureStory) {
+        }else if( state is FailureStory ){
+           Navigator.pop(context);
+           errorMessageSnack(context, state.error);
+        }else if( state is SuccessStory ){
           Navigator.pop(context);
-          errorMessageSnack(context, state.error);
-        } else if (state is SuccessStory) {
-          Navigator.pop(context);
-          modalSuccess(
-            context,
-            'Historia agregada!',
-            onPressed: () => Navigator.pushAndRemoveUntil(
-                context, routeSlide(page: const HomePage()), (_) => false),
+          modalSuccess(context, 'Historia agregada!', 
+            onPressed: () =>  Navigator.pushAndRemoveUntil(context, routeSlide(page: const HomePage()), (_) => false),
           );
         }
       },
@@ -76,48 +70,50 @@ class _AddStoryPageState extends State<AddStoryPage> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          title: const TextCustom(
-            text: 'Galeria',
-            fontSize: 19,
-            letterSpacing: .8,
-          ),
+          title:  const TextCustom(text: 'Galeria', fontSize: 19, letterSpacing: .8,),
           leading: IconButton(
-              splashRadius: 20,
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close, color: Colors.black87)),
+            splashRadius: 20,
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.close, color: Colors.black87)
+          ),
           actions: [
             BlocBuilder<StoryBloc, StoryState>(
               builder: (context, state) => TextButton(
-                  onPressed: () {
-                    if (state.image != null) {
-                      storyBloc.add(OnAddNewStoryEvent(state.image!.path));
-                    }
-                  },
-                  child: const TextCustom(
-                      text: 'Hecho', fontSize: 17, color: ColorsFrave.primary)),
+                onPressed: () {
+                  if( state.image != null ){
+                    storyBloc.add( OnAddNewStoryEvent(state.image!.path) );
+                  }
+                },
+                child: const TextCustom(text: 'Hecho', fontSize: 17, color: ColorsFrave.primary)
+              ),
             )
           ],
         ),
         body: Column(
           children: [
+    
             BlocBuilder<StoryBloc, StoryState>(
-                builder: (_, state) => state.image != null
-                    ? Container(
-                        height: size.height * .4,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                            color: Colors.black87,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: FileImage(state.image!))),
+              builder: (_, state) 
+                => state.image != null
+                ? Container(
+                    height: size.height * .4,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.black87,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: FileImage(state.image!)
                       )
-                    : Container(
-                        height: size.height * .4,
-                        width: size.width,
-                        color: Colors.black87,
-                        child: const Icon(Icons.wallpaper_rounded,
-                            color: Colors.white, size: 90),
-                      )),
+                    ),
+                  )
+                : Container(
+                    height: size.height * .4,
+                    width: size.width,
+                    color: Colors.black87,
+                    child: const Icon(Icons.wallpaper_rounded, color: Colors.white, size: 90),
+                  )
+            ),
+    
             Expanded(
               child: Container(
                 height: size.height,
@@ -137,18 +133,18 @@ class _AddStoryPageState extends State<AddStoryPage> {
                         storyBloc.add(OnSelectedImagePreviewEvent(fileImage));
                       },
                       child: FutureBuilder(
-                        future: _mediaList[i].thumbnailDataWithSize(
-                            const ThumbnailSize(200, 200)),
+                        future: _mediaList[i].thumbDataWithSize(200, 200),
                         builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
+                          if (snapshot.connectionState == ConnectionState.done) {
                             return Container(
                               height: 85,
                               width: 100,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: MemoryImage(snapshot.data!))),
+                                      image: MemoryImage(snapshot.data!)
+                                  )
+                              ),
                             );
                           }
                           return const SizedBox();
