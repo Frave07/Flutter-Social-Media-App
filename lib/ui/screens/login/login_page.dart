@@ -8,6 +8,7 @@ import 'package:social_media/ui/screens/login/verify_email_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -16,6 +17,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   late TextEditingController emailController;
   late TextEditingController passwordController;
   final _keyForm = GlobalKey<FormState>();
@@ -38,31 +40,36 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final size = MediaQuery.of(context).size;
     final authBloc = BlocProvider.of<AuthBloc>(context);
     final userBloc = BlocProvider.of<UserBloc>(context);
 
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is LoadingAuthentication) {
+        
+        if( state is LoadingAuthentication ){
+
           modalLoading(context, 'Verificando...');
-        } else if (state is FailureAuthentication) {
+
+        } else if( state is FailureAuthentication ) {
+
           Navigator.pop(context);
 
-          if (state.error == 'Por favor, verifique su correo') {
-            Navigator.push(
-                context,
-                routeSlide(
-                    page: VerifyEmailPage(email: emailController.text.trim())));
+          if( state.error == 'Por favor, verifique su correo' ){
+            Navigator.push(context, routeSlide(page: VerifyEmailPage(email: emailController.text.trim())));
           }
 
           errorMessageSnack(context, state.error);
-        } else if (state is SuccessAuthentication) {
+
+        } else if( state is SuccessAuthentication ){
+
           userBloc.add(OnGetUserAuthenticationEvent());
           Navigator.pop(context);
-          Navigator.pushAndRemoveUntil(
-              context, routeSlide(page: const HomePage()), (_) => false);
+          Navigator.pushAndRemoveUntil(context, routeSlide(page: const HomePage()), (_) => false);
+
         }
+
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -70,15 +77,13 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                color: Colors.black),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
             onPressed: () => Navigator.pop(context),
           ),
         ),
         body: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: SingleChildScrollView(
               child: Form(
                 key: _keyForm,
@@ -87,17 +92,20 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const SizedBox(height: 10.0),
                     const TextCustom(
-                        text: 'Bienvenido de nuevo!',
-                        letterSpacing: 1.5,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 30,
-                        color: ColorsFrave.secundary),
+                       text: 'Bienvenido de nuevo!', 
+                       letterSpacing: 1.5, 
+                       fontWeight: FontWeight.w600, 
+                       fontSize: 30, 
+                       color: ColorsFrave.secundary
+                    ),
+              
                     const SizedBox(height: 10.0),
                     const TextCustom(
-                      text: 'Inicia sesión para continuar.',
-                      fontSize: 18,
-                      letterSpacing: 1.0,
+                       text: 'Inicia sesión para continuar.', 
+                       fontSize: 18,
+                       letterSpacing: 1.0,
                     ),
+              
                     const SizedBox(height: 70.0),
                     TextFieldFrave(
                       controller: emailController,
@@ -105,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       validator: validatedEmail,
                     ),
+              
                     const SizedBox(height: 50.0),
                     TextFieldFrave(
                       controller: passwordController,
@@ -112,24 +121,29 @@ class _LoginPageState extends State<LoginPage> {
                       isPassword: true,
                       validator: passwordValidator,
                     ),
+              
                     const SizedBox(height: 80.0),
                     BtnFrave(
-                      text: 'Iniciar Sesión',
+                      text: 'Iniciar Sesión', 
                       width: size.width,
-                      onPressed: () {
-                        if (_keyForm.currentState!.validate()) {
-                          authBloc.add(OnLoginEvent(emailController.text.trim(),
-                              passwordController.text.trim()));
+                      onPressed: (){
+    
+                        if( _keyForm.currentState!.validate() ){
+    
+                          authBloc.add( OnLoginEvent(emailController.text.trim(), passwordController.text.trim()) );
+                          
                         }
                       },
                     ),
+              
                     const SizedBox(height: 30.0),
                     Center(
-                        child: InkWell(
-                            onTap: () => Navigator.push(context,
-                                routeSlide(page: const ForgotPasswordPage())),
-                            child: const TextCustom(
-                                text: 'Olvide mi contraseña?')))
+                      child: InkWell(
+                        onTap: () => Navigator.push(context, routeSlide(page: const ForgotPasswordPage())),
+                        child: const TextCustom(text: 'Olvide mi contraseña?')
+                      )
+                    )
+              
                   ],
                 ),
               ),
