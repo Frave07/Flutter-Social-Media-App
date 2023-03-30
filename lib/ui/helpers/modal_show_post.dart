@@ -88,9 +88,9 @@ void modalShowPost(BuildContext context, { required Post post}){
                                     icon : const Icon(Icons.favorite_outline_rounded)
                                   ),
                                   const SizedBox(width: 20.0),
-                                  SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.black),
+                                  SvgPicture.asset('assets/svg/message-icon.svg',),
                                   const SizedBox(width: 20.0),
-                                  SvgPicture.asset('assets/svg/send-icon.svg', height: 24, color: Colors.black)
+                                  SvgPicture.asset('assets/svg/send-icon.svg', height: 24)
                                 ],
                               ),
                               const Icon(Icons.bookmark_outline_rounded)

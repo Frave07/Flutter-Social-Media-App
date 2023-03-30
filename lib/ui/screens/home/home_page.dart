@@ -369,7 +369,7 @@ class _ListViewPosts extends StatelessWidget {
                                       ),
                                       child: Row(
                                         children: [
-                                          SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white),
+                                          SvgPicture.asset('assets/svg/message-icon.svg'),
                                           const SizedBox(width: 5.0),
                                           TextCustom(text: posts.countComment.toString(), fontSize: 16, color: Colors.white)
                                         ],
@@ -381,7 +381,7 @@ class _ListViewPosts extends StatelessWidget {
                                   children: [
                                     IconButton(
                                       onPressed: (){},
-                                      icon: SvgPicture.asset('assets/svg/send-icon.svg', height: 24, color: Colors.white)
+                                      icon: SvgPicture.asset('assets/svg/send-icon.svg', height: 24)
                                     ),
                                     IconButton(
                                       onPressed: () => postBloc.add(OnSavePostByUser( posts.postUid )),

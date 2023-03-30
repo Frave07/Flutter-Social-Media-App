@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:social_media/domain/blocs/blocs.dart';
 import 'package:social_media/ui/helpers/helpers.dart';
-import 'package:social_media/ui/screens/login/verify_email_page.dart';
+import 'package:social_media/ui/screens/login/login_page.dart';
 import 'package:social_media/ui/themes/colors_frave.dart';
 import 'package:social_media/ui/widgets/widgets.dart';
 
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Navigator.pop(context);
           modalSuccess(
             context, 'Usuario registrado', 
-            onPressed: () => Navigator.push(context, routeSlide(page: VerifyEmailPage(email: emailController.text.trim())))
+            onPressed: () => Navigator.pushAndRemoveUntil(context, routeSlide(page: const LoginPage()), (route) => false)
           );
 
         }else if( state is FailureUserState ){

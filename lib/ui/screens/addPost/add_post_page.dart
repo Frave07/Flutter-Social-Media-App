@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,7 +54,7 @@ class _AddPostPageState extends State<AddPostPage> {
 
       List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(onlyAll: true);
       if(albums.isNotEmpty){
-        List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 50);
+        List<AssetEntity> photos = await albums[0].getAssetListPaged(page: 0, size: 50);
         setState(() => _mediaList = photos);
       }
 
@@ -187,44 +186,44 @@ class _AddPostPageState extends State<AddPostPage> {
                   ),
           
                   const SizedBox(height: 5.0),
-                  Container(
-                    padding: const EdgeInsets.all(5),
-                    height: 90,
-                    width: size.width,
-                    // color: Colors.amber,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _mediaList.length,
-                      itemBuilder: (context, i) {
-                        return InkWell(
-                          onTap: () async {
-                            fileImage = (await _mediaList[i].file)!; 
-                            postBloc.add( OnSelectedImageEvent(fileImage));
-                          },
-                          child: FutureBuilder(
-                            future: _mediaList[i].thumbDataWithSize(200, 200),
-                            builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
-                              if( snapshot.connectionState == ConnectionState.done ){
-                                return Container(
-                                  height: 85,
-                                  width: 100,
-                                  margin: const EdgeInsets.only(right: 5.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: MemoryImage(snapshot.data!)
-                                    )
-                                  ),
-                                );
-                              }
-                              return const SizedBox();
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.all(5),
+                  //   height: 90,
+                  //   width: size.width,
+                  //   // color: Colors.amber,
+                  //   child: ListView.builder(
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemCount: _mediaList.length,
+                  //     itemBuilder: (context, i) {
+                  //       return InkWell(
+                  //         onTap: () async {
+                  //           fileImage = (await _mediaList[i].file)!; 
+                  //           postBloc.add( OnSelectedImageEvent(fileImage));
+                  //         },
+                  //         child: FutureBuilder(
+                  //           future: _mediaList[i].thumbDataWithSize(200, 200),
+                  //           builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
+                  //             if( snapshot.connectionState == ConnectionState.done ){
+                  //               return Container(
+                  //                 height: 85,
+                  //                 width: 100,
+                  //                 margin: const EdgeInsets.only(right: 5.0),
+                  //                 decoration: BoxDecoration(
+                  //                   borderRadius: BorderRadius.circular(10.0),
+                  //                   image: DecorationImage(
+                  //                     fit: BoxFit.cover,
+                  //                     image: MemoryImage(snapshot.data!)
+                  //                   )
+                  //                 ),
+                  //               );
+                  //             }
+                  //             return const SizedBox();
+                  //           },
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
           
                   const SizedBox(height: 5.0),
                   const Divider(),
@@ -325,7 +324,7 @@ class _AddPostPageState extends State<AddPostPage> {
             style: TextButton.styleFrom(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
               backgroundColor: ColorsFrave.primary,
-              primary: Colors.white,
+              foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))
             ),
             onPressed: (){

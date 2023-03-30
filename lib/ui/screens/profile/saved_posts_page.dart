@@ -125,7 +125,7 @@ class SavedPostsPage extends StatelessWidget {
                                         onPressed: (){},
                                         child: Row(
                                           children: [
-                                            SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white),
+                                            SvgPicture.asset('assets/svg/message-icon.svg'),
                                             const SizedBox(width: 5.0),
                                             const TextCustom(text: '1.2k', fontSize: 16, color: Colors.white)
                                           ],
@@ -137,7 +137,7 @@ class SavedPostsPage extends StatelessWidget {
                                     children: [
                                       IconButton(
                                         onPressed: (){},
-                                        icon: SvgPicture.asset('assets/svg/send-icon.svg', height: 24, color: Colors.white)
+                                        icon: SvgPicture.asset('assets/svg/send-icon.svg', height: 24)
                                       ),
                                       IconButton(
                                         onPressed: (){},

@@ -43,6 +43,8 @@ class PostServices {
       headers: { 'Accept': 'application/json', 'xxx-token': token! }
     );
 
+    print(jsonDecode( resp.body ));
+
     return ResponsePost.fromJson( jsonDecode( resp.body )).posts;
   }
 

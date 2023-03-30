@@ -98,7 +98,7 @@ class Item extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          primary: ColorsFrave.secundary
+          foregroundColor: ColorsFrave.secundary
         ),
         child: Align(
           alignment: Alignment.centerLeft, 

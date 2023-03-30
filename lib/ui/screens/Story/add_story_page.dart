@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -37,7 +36,7 @@ class _AddStoryPageState extends State<AddStoryPage> {
       List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(onlyAll: true);
 
       if(albums.isNotEmpty){
-        List<AssetEntity> photos = await albums[0].getAssetListPaged(0, 90);
+        List<AssetEntity> photos = await albums[0].getAssetListPaged(page: 0, size: 90);
         setState(() => _mediaList = photos);
       }
     } else {
@@ -114,47 +113,48 @@ class _AddStoryPageState extends State<AddStoryPage> {
                   )
             ),
     
-            Expanded(
-              child: Container(
-                height: size.height,
-                width: size.width,
-                color: Colors.black,
-                child: GridView.builder(
-                  itemCount: _mediaList.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 1,
-                    mainAxisSpacing: 1,
-                  ),
-                  itemBuilder: (context, i) {
-                    return InkWell(
-                      onTap: () async {
-                        fileImage = (await _mediaList[i].file)!;
-                        storyBloc.add(OnSelectedImagePreviewEvent(fileImage));
-                      },
-                      child: FutureBuilder(
-                        future: _mediaList[i].thumbDataWithSize(200, 200),
-                        builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
-                          if (snapshot.connectionState == ConnectionState.done) {
-                            return Container(
-                              height: 85,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: MemoryImage(snapshot.data!)
-                                  )
-                              ),
-                            );
-                          }
-                          return const SizedBox();
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: Container(
+            //     height: size.height,
+            //     width: size.width,
+            //     color: Colors.black,
+            //     child: GridView.builder(
+            //       itemCount: _mediaList.length,
+            //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 3,
+            //         crossAxisSpacing: 1,
+            //         mainAxisSpacing: 1,
+            //       ),
+            //       itemBuilder: (context, i) {
+            //         return InkWell(
+            //           onTap: () async {
+            //             fileImage = (await _mediaList[i].file)!;
+            //             storyBloc.add(OnSelectedImagePreviewEvent(fileImage));
+            //           },
+            //           child: FutureBuilder(
+            //             future: _mediaList[i].thumbDataWithSize(200, 200),
+            //             builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
+            //               if (snapshot.connectionState == ConnectionState.done) {
+            //                 return Container(
+            //                   height: 85,
+            //                   width: 100,
+            //                   decoration: BoxDecoration(
+            //                       image: DecorationImage(
+            //                           fit: BoxFit.cover,
+            //                           image: MemoryImage(snapshot.data!)
+            //                       )
+            //                   ),
+            //                 );
+            //               }
+            //               return const SizedBox();
+            //             },
+            //           ),
+            //         );
+            //       },
+            //     ),
+            //   ),
+            // ),
+
           ],
         ),
       ),

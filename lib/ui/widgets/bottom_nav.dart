@@ -109,7 +109,7 @@ class _ItemButtom extends StatelessWidget {
       child: Container(
         child: ( isIcon ) 
           ? Icon(icon, color: ( i == index ) ? ColorsFrave.primary : isReel ?Colors.white : Colors.black87 , size: 28)
-          : SvgPicture.asset(iconString!, height: 25, color: ( i == index ) ? ColorsFrave.primary : isReel ?Colors.white : Colors.black87),
+          : SvgPicture.asset(iconString!, height: 25),
       ),
     );
   }

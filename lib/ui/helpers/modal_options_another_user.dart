@@ -33,7 +33,7 @@ void modalOptionsAnotherUser(BuildContext context ) {
                 onPressed: (){}, 
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
-                  primary: Colors.grey
+                  foregroundColor: Colors.grey
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -52,7 +52,7 @@ void modalOptionsAnotherUser(BuildContext context ) {
                 onPressed: (){}, 
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
-                  primary: Colors.grey
+                  foregroundColor: Colors.grey
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -71,7 +71,7 @@ void modalOptionsAnotherUser(BuildContext context ) {
                 onPressed: (){}, 
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
-                  primary: Colors.grey
+                  foregroundColor: Colors.grey
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -90,7 +90,7 @@ void modalOptionsAnotherUser(BuildContext context ) {
                 onPressed: (){}, 
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
-                  primary: Colors.grey
+                  foregroundColor: Colors.grey
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,

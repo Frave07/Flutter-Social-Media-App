@@ -82,7 +82,7 @@ class ReelHomeScreen extends StatelessWidget {
                 const SizedBox(height: 15.0),
                 Column(
                   children: [
-                    SvgPicture.asset('assets/svg/message-icon.svg', color: Colors.white, height: 30,),
+                    SvgPicture.asset('assets/svg/message-icon.svg', height: 30,),
                     const SizedBox(height: 5.0),
                     const TextCustom(text: '1504', color: Colors.white, fontSize: 13,)
                   ],
